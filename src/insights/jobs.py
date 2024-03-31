@@ -17,8 +17,8 @@ class ProcessJobs:
     def filter_by_multiple_criteria(
         self, jobs_list, filter_criteria
     ) -> List[dict]:
-        industry = (filter_criteria["industry"],)
-        job_type = (filter_criteria["job_type"],)
+        industry = filter_criteria["industry"]
+        job_type = filter_criteria["job_type"]
 
         return [
             job
