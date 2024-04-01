@@ -32,12 +32,21 @@ class ProcessSalaries(ProcessJobs):
 
             assert min_salary < max_salary
 
+            return min_salary <= salary <= max_salary
+
         except (ValueError, TypeError, AssertionError, KeyError):
             raise ValueError("Invalid parameters provided")
-
-        return min_salary <= salary <= max_salary
 
     def filter_by_salary_range(
         self, jobs: List[dict], salary: Union[str, int]
     ) -> List[Dict]:
-        pass
+        filtered_jobs = list()
+        for job in jobs:
+            try:
+                if self.matches_salary_range(job, salary):
+                    filtered_jobs.append(job)
+
+            except ValueError:
+                continue
+
+        return filtered_jobs
